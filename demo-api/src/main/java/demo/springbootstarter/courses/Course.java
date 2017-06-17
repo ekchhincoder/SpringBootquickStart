@@ -1,24 +1,32 @@
-package demo.springbootstarter.topic;
+package demo.springbootstarter.courses;
+
+import demo.springbootstarter.topic.Topic;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Topic {
+public class Course {
     @Id
     private String id;
     private String name;
     private String descriptions;
 
-    public Topic() {
+    @ManyToOne
+    private Topic topic;
+
+
+    public Course() {
 
     }
 
-    public Topic(String id, String name, String descriptions) {
+    public Course(String id, String name, String descriptions,String topicId) {
         super();
         this.id = id;
         this.name = name;
         this.descriptions = descriptions;
+        this.topic=new Topic(topicId,"","");
     }
 
     public String getId() {
@@ -45,5 +53,11 @@ public class Topic {
         this.descriptions = descriptions;
     }
 
+    public Topic getTopic() {
+        return topic;
+    }
 
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 }
